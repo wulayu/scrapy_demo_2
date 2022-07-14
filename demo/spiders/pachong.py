@@ -1,7 +1,6 @@
 import scrapy
 import json
-from scrapy import Selector, Request
-from scrapy.http import HtmlResponse
+from scrapy import Request
 from demo.items import MovieItem
 
 
@@ -11,6 +10,7 @@ class DoubanSpider(scrapy.Spider):
 
     def start_requests(self):
         for page in range(10):
+            print('正在爬取第%d页的信息......' % page)
             yield Request(
                 url=f'https://prod.olympus.zappos.com/Search/zso/men-sneakers-athletic-shoes/'
                     f'CK_XARC81wHAAQLiAgMBAhg.zso?limit=100&includes=%5B%22productSeoUrl%22%2C'
@@ -25,7 +25,7 @@ class DoubanSpider(scrapy.Spider):
                     f'leSingleShoes%22%2C%22enableMsftAds%22%2C%22enableCrossSiteSearches%22%5D&rel'
                     f'ativeUrls=true&siteId=1&subsiteId=17&page={page}')
 
-    def parse(self, response: HtmlResponse):
+    def parse(self, response, **kwargs):
         a = json.loads(response.text)
         for i in range(0, 100):
             item = MovieItem()

@@ -22,4 +22,3 @@ ITEM_PIPELINES = {
     'demo.pipelines.MovieItemPipeline': 300,
 }
 
-DEPTH_LIMIT = 4

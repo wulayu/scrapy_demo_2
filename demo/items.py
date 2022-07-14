@@ -10,3 +10,4 @@ class MovieItem(scrapy.Item):
     sku = scrapy.Field()
     details = scrapy.Field()
     img_urls = scrapy.Field()
+    priority = scrapy.Field()
